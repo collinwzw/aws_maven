@@ -10,7 +10,7 @@ interface EC2_Interface{
     RunInstancesResult createDefaultInstance();
     void describeAllInstances();
     List<Instance> getAllInstances();
-    TerminateInstancesResult deleteInstance(String instanceID);
+    TerminateInstancesResult terminateInstance(String instanceID);
     RebootInstancesResult rebootInstance(String instanceID);
     List<Instance> filterInstanceByStatus(InstanceStateName state);
 }
@@ -96,7 +96,7 @@ public class EC2 implements EC2_Interface {
     }
 
     @Override
-    public TerminateInstancesResult deleteInstance(String instanceID) {
+    public TerminateInstancesResult terminateInstance(String instanceID) {
         // with given instance ID, terminate this instance
         TerminateInstancesRequest deleteRequest = new TerminateInstancesRequest()
                 .withInstanceIds(instanceID);
@@ -135,7 +135,7 @@ public class EC2 implements EC2_Interface {
 }
 
 
-class Demo{
+class ec2Demo{
     public static void main(String[] args) {
         EC2 ec2 = new EC2();
         ec2.describeAllInstances();
@@ -148,7 +148,7 @@ class Demo{
 
 //        RebootInstancesResult rebootResult = ec2.rebootInstance(filteredResult.get(0).getInstanceId());
 //        System.out.println(rebootResult);
-//        TerminateInstancesResult result = ec2.deleteInstance(filteredResult.get(0).getInstanceId());
+//        TerminateInstancesResult result = ec2.terminateInstance(filteredResult.get(0).getInstanceId());
 //        System.out.println(result);
     }
 }
